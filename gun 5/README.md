@@ -1,5 +1,7 @@
 "Gun 3 - Basit banka simulasyonu" ust modeli.
 
+Sonunda ".json" uzantılı dosyalarında bilgi cekme/yazdırma islemlerini yapmamı engelleyen sorunu cozdum.
+
 Artık kullanıcı bilgileri "hesaplar.json", 
 islem gecmisi ise "islemGecmisi.json" adlı ekstra dosyalara isleniyor,
 program kapatıldıgında silinmiyor.
