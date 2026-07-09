@@ -1,6 +1,32 @@
 [
-    { "id": 1, "name": "Ahmet", "email": "ahmet@test.com", "role": "admin"},
-    { "id": 2, "name": "Mehmet", "email": "mehmet@test.com", "role": "developer"},
-    { "id": 3, "name": "Ayşe", "email": "ayse@test.com", "role": "developer"},
-    { "id": 4, "name": "Elif", "email": "elif@test.com", "role": "intern"}
+  {
+    "id": 1,
+    "name": "Ahmet",
+    "email": "ahmet@test.com",
+    "role": "admin"
+  },
+  {
+    "id": 5,
+    "name": "Mert",
+    "email": "mert@example.com",
+    "role": "developer"
+  },
+  {
+    "id": 6,
+    "name": "Emir",
+    "email": "emir@test.com",
+    "role": "intern"
+  },
+  {
+    "id": 7,
+    "name": "Ahmet1",
+    "email": "ahmet1@test.com",
+    "role": "admin"
+  },
+  {
+    "id": 8,
+    "name": "Emir1",
+    "email": "emir1@test.com",
+    "role": "intern"
+  }
 ]
