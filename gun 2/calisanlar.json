@@ -1,0 +1,17 @@
+[
+    {"name": "John", "team": "Engineering", "salary": 2000, "year": 2026},
+    {"name": "Sheena", "team": "HR", "salary": 5000, "year": 2020},
+    {"name": "Bob", "team": "Engineering", "salary": 8000, "year": 2023},
+    {"name": "Emilia", "team": "Design", "salary": 8000, "year": 2018},
+    {"name": "Ado", "team": "HR", "salary": 10000, "year": 2021},
+    {"name": "Michael", "team": "HR", "salary": 4000, "year": 2022},
+    {"name": "Brian", "team": "IT", "salary": 1000, "year": 2026},
+    {"name": "Jane", "team": "Engineering", "salary": 6000, "year": 2018},
+    {"name": "Giorgia", "team": "IT", "salary": 8000, "year": 2017},
+    {"name": "Juan", "team": "HR", "salary": 5000, "year": 2021},
+    {"name": "Sanae", "team": "Engineering", "salary": 9000, "year": 2020},
+    {"name": "Kevin", "team": "Design", "salary": 5000, "year": 2025},
+    {"name": "Jill", "team": "IT", "salary": 4000, "year": 2023},
+    {"name": "Gabriel", "team": "Design", "salary": 6000, "year": 2019},
+    {"name": "Ezekiel", "team": "Engineering", "salary": 9000, "year": 2016}
+]
