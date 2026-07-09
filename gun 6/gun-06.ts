@@ -222,7 +222,7 @@ async function main() {
 
         await writeFile(HESAPLAR_DOSYASI, JSON.stringify(kaydedilecekHesaplar, null, 2), 'utf-8');
         await writeFile(ISLEM_GECMISI_DOSYASI, JSON.stringify(kaydedilecekGecmisler, null, 2), 'utf-8');
-        console.log(">> Degisiklikler iki ayri dosyaya kaydedildi.")
+        console.log(">> Program bitti degisiklikleriniz iki ayri dosyaya kaydedildi.")
     } catch(error) {
         throw new KayitDosyasiHatasi("Veriler kaydedilirken hata olustu.");
     }
