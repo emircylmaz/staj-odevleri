@@ -195,7 +195,7 @@ async function main() {
         }));
         const kaydedilecekGecmisler = hesaplarList.map(h => ({
             hesapNo: h.getHesapNo(),
-            bakiye: h.getBakiye()
+            gecmis: h.getIslemGecmisi()
         }));
 
         await writeFile(HESAPLAR_DOSYASI, JSON.stringify(kaydedilecekHesaplar, null, 2), 'utf-8');
