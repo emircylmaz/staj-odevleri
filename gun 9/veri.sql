@@ -18,7 +18,7 @@ INSERT INTO odunc_islemleri VALUES
 
 --Su an dısarıda olan kitaplar
 SELECT kitaplar.kitap, uyeler.uye, odunc_islemleri.odunc_tarihi
-FROM odunc_islemleri,
+FROM odunc_islemleri
 INNER JOIN uyeler
     ON odunc_islemleri.uye_id = uyeler.uye_id
 INNER JOIN kitaplar
@@ -35,7 +35,7 @@ ORDER BY odunc_sayisi DESC
 LIMIT 1;
 
 --Hic odunc alinmamis kitaplar
-SELECT kitaplar.kitap
+SELECT kitaplar.kitap_id, kitaplar.kitap
 FROM kitaplar
 LEFT JOIN odunc_islemleri
     ON kitaplar.kitap_id = odunc_islemleri.kitap_id
