@@ -25,8 +25,8 @@ FOREIGN KEY (kitap_id) REFERENCES kitaplar(kitap_id)
 
 
 
-EXPLAIN QUERY PLAN SELECT * FROM odunc_islemleri WHERE islem_id = 501;
+EXPLAIN QUERY PLAN SELECT  * FROM odunc_islemleri WHERE teslim_tarihi IS NULL;
 
-CREATE INDEX idx_odunc_islem ON odunc_islemleri(islem_id);
+CREATE INDEX idx_teslim_tarihi ON odunc_islemleri(teslim_tarihi);
 
-EXPLAIN QUERY PLAN SELECT * FROM odunc_islemleri WHERE islem_id = 501;
+EXPLAIN QUERY PLAN SELECT * FROM odunc_islemleri WHERE teslim_tarihi IS NULL;
