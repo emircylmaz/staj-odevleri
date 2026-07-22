@@ -9,21 +9,6 @@ interface User {
     role: Role;
 }
 
-interface Admin {
-type: 'admin';
-permissions: string[];
-}
-
-interface Developer {
-type: 'developer';
-permissions: string[];
-}
-
-interface Intern {
-    type: 'intern';
-    permissions: string[];
-}
-
 
 function filterByRole <T extends User> (users: T[], role: Role): T[] {
     return users.filter(user => user.role === role);

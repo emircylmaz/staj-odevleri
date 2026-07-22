@@ -47,3 +47,18 @@ WHERE commits.id IS NULL;
 
 INNER JOIN sadece eslesme varsa veriyi gosterir. Aradigimiz gelistiriciler hic commit yapmadigi icin
 LEFT JOIN degil de INNER JOIN kullanmis olsaydik aradigimiz gelistiriciler listede gorunmezdi.
+
+6. Merge edilmis MR'larin ortalama kapatilma/merge suresi (Saat cinsinden)
+SELECT 
+    ROUND(AVG((julianday(merged_at) - julianday(created_at)) * 24), 2) AS avg_merge_time_hours
+FROM merge_requests 
+WHERE status = 'merged' AND merged_at IS NOT NULL;
+
+7. Aylik MR sayilari ve kirilimi
+SELECT 
+    strftime('%Y-%m', created_at) AS month,
+    COUNT(id) AS total_mrs,
+    SUM(CASE WHEN status = 'merged' THEN 1 ELSE 0 END) AS merged_mrs
+FROM merge_requests
+GROUP BY month
+ORDER BY month DESC;

@@ -36,7 +36,7 @@ class BankaHesabi {
     private bakiye = 0;
     private islemGecmisi: { tarih: Date, tur: string, tutar: number }[] = [];
 
-    constructor(hesapNo: number, sahip: string, bakiye: 0, islemGecmisi: { tarih: Date, tur: string, tutar: number }[] = []) {
+    constructor(hesapNo: number, sahip: string, bakiye: number = 0, islemGecmisi: { tarih: Date, tur: string, tutar: number }[] = []) {
         this.hesapNo = hesapNo;
         this.sahip = sahip;
         this.bakiye = bakiye;
@@ -80,25 +80,6 @@ class BankaHesabi {
         })
         console.log(`Guncel miktar: ${this.bakiye}`);
     }
-
-
-
-    public transfer(hedefHesap: BankaHesabi, tutar: number) {
-        if (tutar <= 0) {
-            throw new GecersizTutarHatasi();
-        } 
-        else if (tutar > this.bakiye) {
-            throw new YetersizBakiyeHatasi();
-        }
-        else {
-            this.bakiye = this.bakiye - tutar;
-            this.islemGecmisi.push({ tarih: new Date(), tur: "Gonderilen Transfer", tutar: tutar});
-            hedefHesap.bakiye = hedefHesap.bakiye + tutar;
-            hedefHesap.islemGecmisi.push({ tarih: new Date(), tur: "Gelen Transfer", tutar: tutar});
-            console.log(`${this.hesapNo} ${this.sahip} Hesabinizdan ${hedefHesap.getHesapNo()} ${hedefHesap.getSahip()} Hesabina ${tutar} TL transfer edildi.`);
-        }
-    }
-
 }
 
 async function main() {
@@ -142,6 +123,11 @@ async function main() {
         else {
             throw new KayitDosyasiHatasi(">> Dosya okunurken bilinmeyen bir hata olustu: " + error.message);
         }
+    }
+
+    if (hesaplarList.length === 0) {
+        const varsayilanHesap = new BankaHesabi(1001, "Ahmet Yilmaz", 1000);
+        hesaplarList.push(varsayilanHesap);
     }
 
     
@@ -202,9 +188,6 @@ async function main() {
         console.error(`[Beklenmedik Genel Hata] ${error.message}`);
     }
 
-    const gonderen = hesaplarList[0];
-    const alici = hesaplarList[1];
-    gonderen.transfer(alici, 350);
 
 
 
@@ -222,7 +205,7 @@ async function main() {
 
         await writeFile(HESAPLAR_DOSYASI, JSON.stringify(kaydedilecekHesaplar, null, 2), 'utf-8');
         await writeFile(ISLEM_GECMISI_DOSYASI, JSON.stringify(kaydedilecekGecmisler, null, 2), 'utf-8');
-        console.log(">> Program bitti degisiklikleriniz iki ayri dosyaya kaydedildi.")
+        console.log(">> Degisiklikler iki ayri dosyaya kaydedildi.")
     } catch(error) {
         throw new KayitDosyasiHatasi("Veriler kaydedilirken hata olustu.");
     }

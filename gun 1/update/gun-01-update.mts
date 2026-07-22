@@ -49,7 +49,7 @@ async function writeDatabase(users: User[]): Promise<void> {
 
 
 
-async function deleteUser(id:number): Promise<String> {
+async function deleteUser(id:number): Promise<string> {
     const users = await readDatabase();
     const updatedUsers = users.filter(user => user.id !== id);
 
@@ -58,7 +58,7 @@ async function deleteUser(id:number): Promise<String> {
         return "User not found";
     }
 
-    const result = await writeDatabase(updatedUsers);
+    await writeDatabase(updatedUsers);
     console.log(`Deleted user with ID: ${id}`);
     return "User deleted successfully";
 }

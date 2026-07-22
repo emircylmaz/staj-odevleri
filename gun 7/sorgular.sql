@@ -1,13 +1,13 @@
 --Tablo Oluşturma
 CREATE TABLE developers(
-    id INT, 
-    name TEXT, 
+    id INT PRIMARY KEY AUTOINCREMENT, 
+    name TEXT NOT NULL, 
     email TEXT, 
     team TEXT
 );
 
 --En az 10 kayıt ekleme
-INSERT INTO developers VALUES
+INSERT INTO developers(id, name, email, team) VALUES
 (1,'Emir','emir@test.com','aTeam'),
 (2,'Ahmet','ahmet@test.com','bTeam'),
 (3,'Mehmet','mehmet@test.com','aTeam'),
