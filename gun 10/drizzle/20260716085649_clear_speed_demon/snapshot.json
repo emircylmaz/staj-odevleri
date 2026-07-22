@@ -124,7 +124,7 @@
       "autoincrement": false,
       "default": null,
       "generated": null,
-      "name": "text",
+      "name": "title",
       "entityType": "columns",
       "table": "merge_requests"
     },
@@ -134,7 +134,7 @@
       "autoincrement": false,
       "default": null,
       "generated": null,
-      "name": "developer.id",
+      "name": "developer_id",
       "entityType": "columns",
       "table": "merge_requests"
     },
@@ -200,7 +200,7 @@
     },
     {
       "columns": [
-        "developer.id"
+        "developer_id"
       ],
       "tableTo": "developers",
       "columnsTo": [
@@ -209,7 +209,7 @@
       "onUpdate": "NO ACTION",
       "onDelete": "NO ACTION",
       "nameExplicit": false,
-      "name": "fk_merge_requests_developer.id_developers_id_fk",
+      "name": "fk_merge_requests_developer_id_developers_id_fk",
       "entityType": "fks",
       "table": "merge_requests"
     },

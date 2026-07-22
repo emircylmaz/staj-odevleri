@@ -1,7 +1,7 @@
 import "dotenv/config";
 import { drizzle } from "drizzle-orm/libsql";
 import * as schema from "./db/schema"; 
-import { eq, sql, desc, gte, and, isNull } from "drizzle-orm";
+import { eq, sql, desc, gte, and, isNull, isNotNull } from "drizzle-orm";
 
 // Safely define Drizzle's strict insert types
 type NewDeveloper = typeof schema.developers.$inferInsert;
@@ -28,6 +28,13 @@ function addHours(dateStr: string, hours: number): string {
 async function main() {
   console.log("Starting clean Drizzle seeding execution...");
 
+
+  // 🧹 0. ESKİ VERİLERİ TEMİZLE (Foreign Key sırasına dikkat ederek)
+  console.log("Cleaning existing database records...");
+  await db.delete(schema.commits);
+  await db.delete(schema.merge_requests);
+  await db.delete(schema.developers);
+
   // 1. Insert 10 Developers (with required email & team)
   const mockDevNames = [
     'Ahmet Yilmaz', 'Ayse Demir', 'Mehmet Kaya', 'Fatma Celik', 
@@ -38,7 +45,6 @@ async function main() {
 
   console.log("Inserting developers...");
   const devValues: NewDeveloper[] = mockDevNames.map((name) => {
-    // Generate a clean email based on their name (e.g., "ahmet.yilmaz@company.com")
     const cleanEmail = name.toLowerCase().replace(/\s+/g, '.') + "@company.com";
     const randomTeam = teams[Math.floor(Math.random() * teams.length)];
 
@@ -55,7 +61,6 @@ async function main() {
     .returning({ id: schema.developers.id });
 
   const devIds = insertedDevs.map((d) => d.id);
-  // Separate out the last dev ("Ghost Coder") as clean for your assignment logic
   const activeDevIds = devIds.slice(0, -1); 
   const ghostDevId = devIds[devIds.length - 1];
 
@@ -109,21 +114,14 @@ async function main() {
 
   await db.insert(schema.commits).values(commitValues);
 
+  // Run analysis queries
   await runAnalysisQueries();
 
   console.log("✨ Seed and analysis process fully complete!");
 }
 
-main().catch((err) => {
-  console.error(" Critical seeding failure:", err);
-});
-
-
-
-
-
 async function runAnalysisQueries() {
-  console.log("RUNNING DAY 8 ANALYSIS QUERIES WITH DRIZZLE ORM");
+  console.log("\n--- RUNNING DAY 8 ANALYSIS QUERIES WITH DRIZZLE ORM ---");
 
   // 1. Total Commits per Developer (Descending)
   const query1 = await db
@@ -136,7 +134,7 @@ async function runAnalysisQueries() {
     .groupBy(schema.developers.id, schema.developers.name)
     .orderBy((aliases) => desc(aliases.total_commits));
 
-  console.log("1. Total Commits per Developer (Descending):");
+  console.log("\n1. Total Commits per Developer (Descending):");
   console.table(query1);
 
   // 2. Open MRs Created in Last 30 Days
@@ -193,12 +191,41 @@ async function runAnalysisQueries() {
 
   console.log("\n5. Developers with No Commits:");
   console.table(query5);
-}
 
+  // 6. Average Merge Time in Hours (julianday)
+  const query6 = await db
+    .select({
+      avg_merge_time_hours: sql<number>`round(avg((julianday(${schema.merge_requests.merged_at}) - julianday(${schema.merge_requests.created_at})) * 24), 2)`,
+    })
+    .from(schema.merge_requests)
+    .where(
+      and(
+        eq(schema.merge_requests.status, "merged"),
+        isNotNull(schema.merge_requests.merged_at)
+      )
+    );
 
+  console.log("\n6. Average MR Merge Duration (Hours - julianday):");
+  console.table(query6);
 
+  // 7. Monthly MR Breakdown (strftime)
+  const monthExpr = sql<string>`strftime('%Y-%m', ${schema.merge_requests.created_at})`;
 
+  const query7 = await db
+    .select({
+      month: monthExpr,
+      total_mrs: sql<number>`cast(count(${schema.merge_requests.id}) as integer)`,
+      merged_mrs: sql<number>`cast(sum(case when ${schema.merge_requests.status} = 'merged' then 1 else 0 end) as integer)`,
+    })
+    .from(schema.merge_requests)
+    .groupBy(monthExpr)
+    .orderBy(desc(monthExpr));
 
+  console.log("\n7. Monthly MR Breakdown (strftime):");
+  console.table(query7);
+
+// TEK VE TEMİZ ÇAĞRI
 main().catch((err) => {
   console.error(" Critical seeding failure:", err);
-});
+}); 
+}

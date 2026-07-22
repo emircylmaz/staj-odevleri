@@ -113,6 +113,11 @@ const query5 = await db
 
 
 
+**Ham SQL Yolu:** `LEFT JOIN` kullanarak `commits` tablosunda eşleşmeyen (hiç commit yapmamış) geliştiricileri bulmak için `WHERE commits.id IS NULL` filtresi uygulanır. `INNER JOIN` kullanılsaydı eşleşmeyen geliştiriciler doğrudan eleneceği için bu veri elde edilemezdi.
+**Drizzle ORM Yolu:** Drizzle'da `leftJoin` kullanıldığında, birleşen tablonun tüm alanları varsayılan olarak `T | null` (nullable) tipine bürünür.
+
+
+
 Kendi Yorumum:
 
 Sorguların iki türlü, ham SQL ve ORM kullanılarak, yazaılmış hallerini yan yana incelediğimde

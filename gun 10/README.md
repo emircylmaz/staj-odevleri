@@ -1,5 +1,12 @@
 Drizzle ORM kullanarak SQL
 
+Kodu calisitrmak icin sirasiyla asagidaki adimlari takip edebilirsiniz:
+`npm install` kodunu dosya konumunda calistirin,
+`.env` dosyasi olusturun, icerigi `.env.example` dosyasindaki kaliba uygun olmalidir,
+`npx drizzle-kit push`,
+`npx tsx index.ts` komutlarini da calistirdiginizda olacaktir.
+
+
 Gun 8'de sqlite3 uzerinden elle yazdıgım CREATE TABLE'lar:
 ![alt text](image.png)
 
@@ -50,13 +57,14 @@ CREATE TABLE `developers` (
 --> statement-breakpoint
 CREATE TABLE `merge_requests` (
 	`id` integer PRIMARY KEY AUTOINCREMENT,
-	`text` text NOT NULL,
-	`developer.id` integer NOT NULL,
+	`title` text NOT NULL,
+	`developer_id` integer NOT NULL,
 	`created_at` text NOT NULL,
 	`merged_at` text,
 	`status` text NOT NULL,
 	CONSTRAINT `fk_merge_requests_developer.id_developers_id_fk` FOREIGN KEY (`developer.id`) REFERENCES `developers`(`id`)
 );
+
 
 *
 *

@@ -1,3 +1,8 @@
+Bu calismada, TypeScript kullanarak asenkron HTTP isteklerini yoneten ve hata katmanı optimize edilmis bir API istemcisi gelistirilmistir..
+
+Nasıl Calistirilir:
+`npm start`
+
 Yorumlari sirali ve paralel olarak 5 kere calistirdim ve her birinin
 sonucunu asagiya koydum:
 
@@ -5,21 +10,17 @@ sonucunu asagiya koydum:
 Sequential execution time: 547.46 ms
 Parallel execution time (Promise.all): 193.06 ms
 
-
 ---STEP 3: Performance Benchmark
 Sequential execution time: 534.60 ms
 Parallel execution time (Promise.all): 171.84 ms
-
 
 ---STEP 3: Performance Benchmark
 Sequential execution time: 633.49 ms
 Parallel execution time (Promise.all): 174.15 ms
 
-
 ---STEP 3: Performance Benchmark
 Sequential execution time: 601.32 ms
 Parallel execution time (Promise.all): 178.17 ms
-
 
 ---STEP 3: Performance Benchmark
 Sequential execution time: 596.34 ms

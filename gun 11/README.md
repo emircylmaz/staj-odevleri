@@ -1,5 +1,13 @@
 Editor Tip Incelemesi
 
+Nasıl calistirilir:
+`npm run db:reset` **Önerilen:** Mevcut SQLite veritabanı dosyalarını (`.db`) temizler, Drizzle şemasını uygular ve tüm seed + analiz kodunu sıfırdan çalıştırır. 
+`npm run db:push` Drizzle şemasını (`src/db/schema.ts`) doğrudan SQLite veritabanı dosyası ile senkronize eder. 
+`npm run db:seed` Veritabanını sahte geliştirici, MR ve commit verileriyle doldurur ve Gün 8 analiz sorgularının çıktılarını basar. 
+`npm start` Ana giriş noktasını (`src/index.ts`) çalıştırır. 
+
+
+
 Editorde 5. sorgunun (`query5`) uzerine gelindiginde cikan tip su sekildedir:
 ```typescript
 const query5: {
