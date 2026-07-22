@@ -32,8 +32,8 @@ new SmsBildirim(),
 new SlackBildirim()
 ];
 
-for (const Bildirim of list) {
-    Bildirim.gonder("Merhaba!");
+for (const bildirim of list) {
+    bildirim.gonder("Merhaba!");
 }
 
 class TercihliBildirim{

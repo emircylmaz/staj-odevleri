@@ -26,8 +26,8 @@ class BankaHesabi {
             throw new Error("Hesabinizda yeterli miktarda para bulunmuyor.");
         else {
             this.bakiye = this.bakiye - tutar;
-            console.log(this.hesapNo + " " + this.sahip + ", " + "Hesabinizdaki guncel miktar: " + this.bakiye); }
-            this.islemGecmisi.push({ tarih: new Date(), tur: "Cekme", tutar: tutar});
+            console.log(this.hesapNo + " " + this.sahip + ", " + "Hesabinizdaki guncel miktar: " + this.bakiye); 
+            this.islemGecmisi.push({ tarih: new Date(), tur: "Cekme", tutar: tutar}); }
     }
 
     public bakiyeGoster() {

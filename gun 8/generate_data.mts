@@ -38,8 +38,19 @@ try {
     }
 
     // Get valid developer IDs from the database
-    const devs = db.prepare("SELECT id FROM developers").all() as { id: number }[];
-    const devIds = devs.map(d => d.id);
+    let devs = db.prepare("SELECT id FROM developers").all() as { id: number }[];
+    let devIds = devs.map(d => d.id);
+
+    // --- LATENT BUG FIX ---
+    // En az 2 geliştirici olmasını garanti ediyoruz, böylece activeDevIds boş kalıp undefined/NULL üretmez
+    if (devIds.length < 2) {
+        console.log("Q5 için en az 2 geliştirici gereklidir. Ek 'Ghost Coder' ekleniyor...");
+        const insertDev = db.prepare("INSERT INTO developers (name) VALUES (?)");
+        insertDev.run('Ghost Coder');
+        
+        devs = db.prepare("SELECT id FROM developers").all() as { id: number }[];
+        devIds = devs.map(d => d.id);
+    }
     
     // Split developers so we keep one developer completely clean (no commits/MRs) for Q5
     const activeDevIds = devIds.slice(0, -1); 

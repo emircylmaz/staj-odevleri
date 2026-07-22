@@ -2,11 +2,11 @@
   {
     "hesapNo": 101,
     "sahip": "Emir",
-    "bakiye": 500
+    "bakiye": 0
   },
   {
     "hesapNo": 102,
     "sahip": "Sheena",
-    "bakiye": 1500
+    "bakiye": 1850
   }
 ]

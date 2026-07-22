@@ -1,3 +1,32 @@
 [
-
+  {
+    "hesapNo": 101,
+    "gecmis": [
+      {
+        "tarih": "2026-07-22T07:43:00.856Z",
+        "tur": "Yatirma",
+        "tutar": 250
+      },
+      {
+        "tarih": "2026-07-22T07:43:00.857Z",
+        "tur": "Cekme",
+        "tutar": 400
+      },
+      {
+        "tarih": "2026-07-22T07:43:00.874Z",
+        "tur": "Gonderilen Transfer",
+        "tutar": 350
+      }
+    ]
+  },
+  {
+    "hesapNo": 102,
+    "gecmis": [
+      {
+        "tarih": "2026-07-22T07:43:00.874Z",
+        "tur": "Gelen Transfer",
+        "tutar": 350
+      }
+    ]
+  }
 ]
