@@ -17,8 +17,8 @@ CREATE TABLE `developers` (
 --> statement-breakpoint
 CREATE TABLE `merge_requests` (
 	`id` integer PRIMARY KEY AUTOINCREMENT,
-	`text` text NOT NULL,
-	`developer.id` integer NOT NULL,
+	`title` text NOT NULL,
+	`developer_id` integer NOT NULL,
 	`created_at` text NOT NULL,
 	`merged_at` text,
 	`status` text NOT NULL,
