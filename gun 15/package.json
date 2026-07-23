@@ -1,0 +1,22 @@
+{
+  "name": "gun-15",
+  "version": "1.0.0",
+  "description": " ",
+  "main": "index.js",
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "esbuild": "^0.28.1",
+    "tsx": "^4.23.1",
+    "typescript": "^7.0.2",
+    "undici-types": "^8.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sync": "tsx src/index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}
